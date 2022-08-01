@@ -929,12 +929,12 @@ but without opening a new window.
   :defer
   :ensure t
   :mode "\\.go\\'"
-;  :config
-;  (defun my/go-mode-setup ()
+  :config
+  (defun my/go-mode-setup ()
     "Basic Go mode setup."
-;;  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-;;  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-;;  (add-hook 'go-mode-hook #'my/go-mode-setup)
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'my/go-mode-setup)
   :hook
   (go-mode . lsp))
 #+END_SRC
