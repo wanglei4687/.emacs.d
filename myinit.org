@@ -324,7 +324,6 @@ see more,https://github.com/jojojames/dired-sidebar
 ** vterm
 #+BEGIN_SRC emacs-lisp
   (use-package vterm
-  :defer
   :ensure t
   :bind ("C-x g" . vterm))
 #+END_SRC
