@@ -672,15 +672,15 @@ see more, https://magit.vc/
     (defvar bug-reference-auto-setup-functions '()))
 
 
-  (use-package libgit
-  :delight
-  :ensure t
-  :after magit)
+;;  (use-package libgit
+;;  :delight
+;;  :ensure t
+;;  :after magit)
 
-  (use-package magit-libgit
-  :delight
-  :ensure t
-  :after (magit libgit))
+;;  (use-package magit-libgit
+;;  :delight
+;;  :ensure t
+;;  :after (magit libgit))
 
 
   (use-package git-messenger
