@@ -22,32 +22,33 @@
   (global-set-key (kbd "<f5>") 'revert-buffer)
   (fset 'yes-or-no-p 'y-or-n-p)
   (setq-default frame-title-format "%b (%f)")
-  
+
   ;; cursor
   (setq-default cursor-type 'bar)
   (set-cursor-color "#63D490")
-  (blink-cursor-mode 1)  
-  
+  (blink-cursor-mode 1)
+
   (menu-bar-mode -1)
   (tool-bar-mode -1)
-;;  (scroll-bar-mode -1)  
+;;  (scroll-bar-mode -1)
 ;;  (set-face-attribute 'region nil :background "#fffacd")
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-  (mouse-wheel-mode -1)  
+  (mouse-wheel-mode -1)
   (global-set-key [wheel-up] 'ignore)
   (global-set-key [double-wheel-up] 'ignore)
   (global-set-key [triple-wheel-up] 'ignore)
-  (global-set-key [wheel-down] 'ignore) 
+  (global-set-key [wheel-down] 'ignore)
   (global-set-key [double-wheel-down] 'ignore)
   (global-set-key [triple-wheel-down] 'ignore)
   (global-set-key [wheel-left] 'ignore)
   (global-set-key [double-wheel-left] 'ignore)
   (global-set-key [triple-wheel-left] 'ignore)
   (global-set-key [wheel-right] 'ignore)
-  (global-set-key [double-wheel-right] 'ignore) 
-  (global-set-key [triple-wheel-right] 'ignore)  
-  
+  (global-set-key [double-wheel-right] 'ignore)
+  (global-set-key [triple-wheel-right] 'ignore)
+  (global-set-key (kbd "C-x w")  'comment-region)
+
   (require 'hl-line)
   (add-hook 'prog-mode-hook #'hl-line-mode)
   (add-hook 'text-mode-hook #'hl-line-mode)
@@ -128,7 +129,6 @@
     `((".*" . ,temporary-file-directory)))
   (setq auto-save-file-name-transforms
     `((".*" ,temporary-file-directory t)))
-
 #+END_SRC
 
 ** helpful
