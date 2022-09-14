@@ -177,13 +177,10 @@ doomemacs: https://github.com/doomemacs/themes
 ** dashboard
 see more, https://github.com/emacs-dashboard/emacs-dashboard
 #+BEGIN_SRC emacs-lisp
-  (require 'dashboard)
-  (dashboard-setup-startup-hook)
-  ;; Or if you use use-package
   (use-package dashboard
-    :ensure t
-    :config
-    (dashboard-setup-startup-hook))
+  :ensure t
+  :config
+  (setq dashboard-banner-logo-title "Wang Wang Wang"))
 #+END_SRC
 * common
 ** eldoc and xref
@@ -683,6 +680,7 @@ see more, https://magit.vc/
   :after magit)
 
   (use-package magit-libgit
+  :delight
   :ensure t
   :after (magit libgit))
 
