@@ -883,6 +883,7 @@ but without opening a new window.
   :ensure t
   :config
   (lsp-ui-doc-show))
+
 #+END_SRC
 
 ** rust
@@ -959,6 +960,7 @@ but without opening a new window.
   (add-hook 'go-mode-hook #'my/go-mode-setup)
   :hook
   (go-mode . lsp))
+
 #+END_SRC
 
 ** yaml
