@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: matrixorigin_go_2022
-# key: matrixorigin
+# key: mo
 # contributor: wanglei <wanglei4687@gmail.com>
 # binding: C-c C-c C-m
 # --
