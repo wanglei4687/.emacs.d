@@ -643,28 +643,30 @@ see more, https://magit.vc/
     ("C-c x h" . magit-commit-amend)
   ))
 
-  (use-package forge
-  :ensure t
-  :after magit
-  :bind (
-     ("C-c v p" . forge-pull)
-     ("C-c v i" . forge-list-issues)
-     ("C-c v r" . forge-list-pullreqs)
-     ("C-c v a" . forge-create-pullreq-from-issue)
-     ("C-c v u" . forge-create-issue)
-     ("C-c v d" . forge-add-repository)
-     ("C-c v l" . forge-list-topics)
-     ("C-c v n" . forge-forge-edit-topic-note)
-     ("C-c v m" . forge-edit-mark)
-     ("C-c v t" . forge-edit-topic-title)
-     ("C-c v o" . forge-edit-topic-review-requests)
-     ("C-c v q" . forge-edit-topic-milestone)
-     ("C-c v f" . forge-edit-topic-assignees)
-     ("C-c v s" . forge-edit-topic-state)
-     ("C-c v g" . forge-merge)
-     ("C-c v y" . forge-create-pullreq)
-     ("C-c v b" . forge-edit-post)
-   ))
+;  (use-package forge
+;  :ensure t
+;  :after magit
+;  :config
+;  (setq url-debug t)
+;  :bind (
+;     ("C-c v p" . forge-pull)
+;     ("C-c v i" . forge-list-issues)
+;     ("C-c v r" . forge-list-pullreqs)
+;     ("C-c v a" . forge-create-pullreq-from-issue)
+;     ("C-c v u" . forge-create-issue)
+;     ("C-c v d" . forge-add-repository)
+;     ("C-c v l" . forge-list-topics)
+;     ("C-c v n" . forge-forge-edit-topic-note)
+;     ("C-c v m" . forge-edit-mark)
+;     ("C-c v t" . forge-edit-topic-title)
+;     ("C-c v o" . forge-edit-topic-review-requests)
+;     ("C-c v q" . forge-edit-topic-milestone)
+;     ("C-c v f" . forge-edit-topic-assignees)
+;     ("C-c v s" . forge-edit-topic-state)
+;     ("C-c v g" . forge-merge)
+;     ("C-c v y" . forge-create-pullreq)
+;     ("C-c v b" . forge-edit-post)
+;   ))
 
   ;; Hack to eliminate weirdness
   (unless (boundp 'bug-reference-auto-setup-functions)
