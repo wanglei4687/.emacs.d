@@ -603,8 +603,8 @@ see more, https://github.com/killdash9/better-shell
   (use-package helm
   :ensure t
   :diminish helm-mode
-  :config
-  (require 'helm-config)
+;;  :config
+;;  (require 'helm-config)
   :bind
   ("C-c f" . helm-projectile-find-file-dwim)
   ("M-x" . helm-M-x)
