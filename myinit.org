@@ -671,17 +671,6 @@ see more, https://magit.vc/
     (defvar bug-reference-auto-setup-functions '()))
 
 
-;;  (use-package libgit
-;;  :delight
-;;  :ensure t
-;;  :after magit)
-
-;;  (use-package magit-libgit
-;;  :delight
-;;  :ensure t
-;;  :after (magit libgit))
-
-
   (use-package git-messenger
   :ensure t
   :bind ("C-c x m" . git-messenger:popup-message)
@@ -953,11 +942,11 @@ but without opening a new window.
   :ensure t
   :mode "\\.go\\'"
   :config
-  (defun my/go-mode-setup ()
-    "Basic Go mode setup."
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  (add-hook 'go-mode-hook #'my/go-mode-setup)
+;;  (defun my/go-mode-setup ()
+;;    "Basic Go mode setup."
+;;    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+;;    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+;;  (add-hook 'go-mode-hook #'my/go-mode-setup)
   :hook
   (go-mode . lsp))
 
