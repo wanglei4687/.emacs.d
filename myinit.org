@@ -953,11 +953,11 @@ but without opening a new window.
   :ensure t
   :mode "\\.go\\'"
   :config
-  (defun my/go-mode-setup ()
-    "Basic Go mode setup."
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  (add-hook 'go-mode-hook #'my/go-mode-setup)
+;;  (defun my/go-mode-setup ()
+;;    "Basic Go mode setup."
+;;    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+;;    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+;;  (add-hook 'go-mode-hook #'my/go-mode-setup)
   :hook
   (go-mode . lsp))
 
