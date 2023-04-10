@@ -156,8 +156,9 @@
 see more https://github.com/hlissner/emacs-doom-themes
 doomemacs: https://github.com/doomemacs/themes
 #+BEGIN_SRC emacs-lisp
-  
+
   (use-package color-theme-modern
+
   :ensure t)
 
   (use-package doom-themes
@@ -170,7 +171,13 @@ doomemacs: https://github.com/doomemacs/themes
 
   (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-project-detection 'auto)
+  (setq doom-modeline-buffer-name t)
+  (setq doom-modeline-vcs-max-length 12)
+  (setq doom-modeline-lsp t)
+  (setq doom-modeline-always-visible-segments '(mu4e irc)))
 
 #+END_SRC
 
@@ -849,8 +856,8 @@ but without opening a new window.
   (setq lsp-keymap-prefix "C-c j")
   (setq lsp-restart 'auto-restart)
   (setq lsp-ui-sideline-show-diagnostics t)
-  (setq lsp-ui-sideline-show-hover t)
-  (setq lsp-ui-sideline-show-code-actions t)
+;  (setq lsp-ui-sideline-show-hover t)
+;  (setq lsp-ui-sideline-show-code-actions t)
 
   (use-package lsp-mode
   :ensure t
@@ -865,9 +872,9 @@ but without opening a new window.
   :commands lsp-treemacs-errors-list)
 
   ;; https://github.com/emacs-lsp/dap-mode
-  (use-package dap-mode
-  :defer
-  :commands (dap-debug dap-debug-edit-template))
+;  (use-package dap-mode
+;  :defer
+;  :commands (dap-debug dap-debug-edit-template))
 
   (use-package lsp-ui
   :hook lsp-mode
@@ -882,7 +889,7 @@ but without opening a new window.
   (use-package rust-mode
   :defer
   :ensure t
-  :hook (rust-mode . lsp)
+ ; :hook (rust-mode . lsp)
   :bind
   ("C-c e" . rust-run)
   ("C-c t" . rust-test)
@@ -943,7 +950,7 @@ but without opening a new window.
   :defer
   :ensure t
   :mode "\\.go\\'"
-  :config
+;;  :config
 ;;  (defun my/go-mode-setup ()
 ;;    "Basic Go mode setup."
 ;;    (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -1009,23 +1016,6 @@ see more, https://github.com/Sarcasm/irony-mode
   (editorconfig-mode 1)
   (setq editorconfig-trim-whitespaces-mode
         'ws-butler-mode))
-#+END_SRC
-
-** lean
-#+BEGIN_SRC emacs-lisp
-  (use-package lean-mode
-  :defer
-  :ensure t)
-
-  (use-package helm-lean
-  :defer
-  :after (lean-mode helm)
-  :ensure t)
-
-  (use-package company-lean
-  :defer
-  :after (lean-mode company)
-  :ensure t)
 #+END_SRC
 
 * org
