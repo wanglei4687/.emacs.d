@@ -164,7 +164,7 @@ doomemacs: https://github.com/doomemacs/themes
   (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-monokai-pro t)
+  (load-theme 'doom-dracula  t)
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
   (setq doom-themes-treemacs-theme "doom-colors"))
