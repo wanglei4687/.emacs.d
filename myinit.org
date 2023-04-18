@@ -30,8 +30,8 @@
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
-;;  (scroll-bar-mode -1)
-;;  (set-face-attribute 'region nil :background "#fffacd")
+  (scroll-bar-mode -1)
+  (set-face-attribute 'region nil :background "#fffacd")
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
   (mouse-wheel-mode -1)
@@ -154,7 +154,7 @@
 * theme and modeline
 ** doom and doom-modeline
 see more https://github.com/hlissner/emacs-doom-themes
-doomemacs: https://github.com/doomemacs/themes
+doom emacs: https://github.com/doomemacs/themes
 #+BEGIN_SRC emacs-lisp
 
   (use-package color-theme-modern
@@ -235,12 +235,12 @@ see more, https://github.com/emacs-dashboard/emacs-dashboard
   :config (all-the-icons-ivy-rich-mode 1))
 #+END_SRC
 
-** linum
+** nlinum
 #+BEGIN_SRC emacs-lisp
-  (use-package linum
+  (use-package nlinum
   :ensure t
   :config
-  :bind (("C-c l" . linum-mode)))
+  :bind (("C-c l" . nlinum-mode)))
 #+END_SRC
 
 ** vertico
@@ -856,8 +856,10 @@ but without opening a new window.
   (setq lsp-keymap-prefix "C-c j")
   (setq lsp-restart 'auto-restart)
   (setq lsp-ui-sideline-show-diagnostics t)
-;  (setq lsp-ui-sideline-show-hover t)
-;  (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-sideline-show-hover nil)
+  (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-sideline-enable nil)
+
 
   (use-package lsp-mode
   :ensure t
@@ -877,7 +879,7 @@ but without opening a new window.
 ;  :commands (dap-debug dap-debug-edit-template))
 
   (use-package lsp-ui
-  :hook lsp-mode
+  :hook (lsp-mode . lsp-ui-mode)
   :ensure t
   :config
   (lsp-ui-doc-show))
