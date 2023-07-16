@@ -17,6 +17,7 @@ history
 projectile-bookmarks.*
 var/
 *.sqlite
+eln-cache/
 
 # OSX leaves these everywhere on SMB shares
 ._*
