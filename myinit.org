@@ -945,7 +945,8 @@ but without opening a new window.
   :defer
   :ensure t
   :mode (("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)))
+         ("\\.markdown\\'" . markdown-mode)
+         ("\\.mdx\\'" . markdown-mode)))
 #+END_SRC
 
 ** go
