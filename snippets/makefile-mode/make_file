@@ -4,6 +4,7 @@
 # contributor: wanglei <wanglei4687@gmail.com>
 # binding: C-c C-c C-b
 # --
+PATH := bin:$(PATH)
 MAKEFLAGS += --warn-undefined-variables
 SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c

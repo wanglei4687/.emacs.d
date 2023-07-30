@@ -171,13 +171,14 @@ doom emacs: https://github.com/doomemacs/themes
 
   (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
-;;  :config
-;;  (setq doom-modeline-project-detection 'auto)
-;;  (setq doom-modeline-buffer-name t)
-;;  (setq doom-modeline-vcs-max-length 12)
-;;  (setq doom-modeline-lsp t)
-;;  (setq doom-modeline-always-visible-segments '(mu4e irc)))
+  :init
+  (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-project-detection 'auto)
+  (setq doom-modeline-buffer-name t)
+  (setq doom-modeline-vcs-max-length 12)
+  (setq doom-modeline-lsp t)
+  (setq doom-modeline-always-visible-segments '(mu4e irc)))
 
 #+END_SRC
 
