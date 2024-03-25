@@ -18,6 +18,8 @@ projectile-bookmarks.*
 var/
 *.sqlite
 eln-cache/
+org-persist/
+config/*.el
 
 # OSX leaves these everywhere on SMB shares
 ._*

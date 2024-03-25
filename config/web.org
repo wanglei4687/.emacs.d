@@ -1,0 +1,31 @@
+#+STARTUP: overview
+#+PROPERTY: header-args :comments yes :results silent
+
+* web-dev
+** typescript
+#+BEGIN_SRC emacs-lisp
+  (use-package typescript-mode
+    :defer
+    :ensure t
+    :config
+    ;; use our derived mode for tsx files
+    (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
+    (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+    (add-hook 'typescript-mode-hook '(lambda() (setq tab-width 4))
+    :hook
+    (typescript-mode . lsp)))
+
+  (use-package  rjsx-mode
+    :ensure t)
+
+  ;; auto-format different source code files extremely intelligently
+  ;; https://github.com/radian-software/apheleia
+  (use-package apheleia
+    :ensure t
+    :config
+    (apheleia-global-mode +1))
+
+  (use-package eglot
+    :ensure t)
+
+  #+END_SRC

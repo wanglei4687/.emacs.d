@@ -1,0 +1,291 @@
+#+STARTUP: overview
+#+PROPERTY: header-args :comments yes :results silent
+
+* editor
+** better shell
+see more, https://github.com/killdash9/better-shell
+#+BEGIN_SRC emacs-lisp
+  (use-package better-shell
+  :ensure t
+  :bind (("C-c s " . better-shell-shell)
+           ("C-c q" . better-shell-remote-open)))
+#+END_SRC
+
+** undo
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode 1)
+  (global-set-key (kbd "C-z") 'undo)
+  :config
+  (setq undo-tree-auto-save-history t)
+  (setq undo-tree-history-directory-alist
+    `(("." . ,temporary-file-directory))))
+#+END_SRC
+
+** helm
+#+BEGIN_SRC emacs-lisp
+  (use-package ag
+  :ensure t)
+
+  (use-package helm-ag
+  :ensure t
+  :after ag)
+
+  (use-package helm-projectile
+  :ensure t
+  :after helm
+  :config (helm-projectile-on))
+
+  (use-package helm
+  :ensure t
+  :diminish helm-mode
+;;  :config
+;;  (require 'helm-config)
+  :bind
+  ("C-c f" . helm-projectile-find-file-dwim)
+  ("M-x" . helm-M-x)
+  ("C-x r b" . helm-filtered-bookmarks)
+  ("C-x C-f" . helm-find-files)
+  :init
+  (helm-mode 1)
+  (customize-set-variable 'helm-ff-lynx-style-map t))
+#+END_SRC
+
+** magit
+see more, https://magit.vc/
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+  :ensure t
+  :diminish magit-autorevert-mode
+  :diminish auto-revert-mode
+  :config
+  (defun pt/commit-hook () (set-fill-column 80))
+  (add-hook 'git-commit-setup-hook #'pt/commit-hook)
+  (add-to-list 'magit-no-confirm 'stage-all-changes)
+  :bind (
+    ("C-c x c" . magit-commit)
+    ("C-c x p" . magit-push)
+    ("C-c x l" . magit-log)
+    ("C-c x n" . magit-clone)
+    ("C-c x b" . magit-branch-create)
+    ("C-c x d" . magit-branch-delete)
+    ("C-c x r" . magit-branch-reset)
+    ("C-c x o" . magit-checkout)
+    ("C-c x s" . magit-stash)
+    ("C-c x g" . magit-status)
+    ("C-c x u" . magit-pull)
+    ("C-c x y" . magit-branch-checkout)
+    ("C-c x a" . magit-branch-and-checkout)
+    ("C-c x h" . magit-commit-amend)
+  ))
+
+  (use-package forge
+  :ensure t
+  :after magit
+  :config
+  (setq url-debug t)
+  :bind (
+     ("C-c v p" . forge-pull)
+     ("C-c v i" . forge-list-issues)
+     ("C-c v r" . forge-list-pullreqs)
+     ("C-c v a" . forge-create-pullreq-from-issue)
+     ("C-c v u" . forge-create-issue)
+     ("C-c v d" . forge-add-repository)
+     ("C-c v l" . forge-list-topics)
+     ("C-c v n" . forge-forge-edit-topic-note)
+     ("C-c v m" . forge-edit-mark)
+     ("C-c v t" . forge-edit-topic-title)
+     ("C-c v o" . forge-edit-topic-review-requests)
+     ("C-c v q" . forge-edit-topic-milestone)
+     ("C-c v f" . forge-edit-topic-assignees)
+     ("C-c v s" . forge-edit-topic-state)
+     ("C-c v g" . forge-merge)
+     ("C-c v y" . forge-create-pullreq)
+     ("C-c v b" . forge-edit-post)
+   ))
+
+  ;; Hack to eliminate weirdness
+  (unless (boundp 'bug-reference-auto-setup-functions)
+    (defvar bug-reference-auto-setup-functions '()))
+
+
+  (use-package git-messenger
+  :ensure t
+  :bind ("C-c x m" . git-messenger:popup-message)
+  :config
+  (setq git-messenger:show-detail t
+        git-messenger:use-magit-popup t))
+
+  (use-package git-timemachine
+  :ensure t
+  :bind ("C-c x t" . git-timemachine))
+#+END_SRC
+
+** rainbow
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+  :ensure t
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
+
+  (use-package rainbow-identifiers
+  :ensure t)
+#+END_SRC
+
+** anzu
+#+BEGIN_SRC emacs-lisp
+  (use-package anzu
+  :ensure t
+  :delight
+  :bind  (
+    ("C-x r i" . anzu-isearch-query-replace)
+    ("C-x r a" . anzu-query-replace))
+  :config
+  (global-anzu-mode 1))
+#+END_SRC
+
+** prodigy
+#+BEGIN_SRC emacs-lisp
+  (use-package prodigy
+  :ensure t
+  :bind (("C-c 8" . #'prodigy)
+           :map prodigy-view-mode-map
+           ("$" . #'end-of-buffer))
+  :custom (prodigy-view-truncate-by-default t)
+  :config
+  ;;  (load "~/.emacs.d/services.el" 'noerror))
+    (prodigy-define-tag
+    :name 'pulumi
+    :ready-message "Pulumi!!!")
+    (prodigy-define-tag
+     :name 'operator
+     :ready-message "Matrixone Operator!!!")
+
+    (prodigy-define-service
+     :name "pulumi up"
+     :command "pulumi"
+     :args '("up", "--yes")
+     :cwd "~/Documents/matrixone-operator/"
+     :tags '(pulumi))
+  )
+#+END_SRC
+
+** miniedit
+#+BEGIN_SRC emacs-lisp
+  (use-package miniedit
+  :ensure t)
+#+END_SRC
+
+** company
+see more, http://company-mode.github.io/
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+  :ensure t
+  :hook (emacs-lisp-mode . company-mode)
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+  (global-company-mode t))
+
+  (use-package company-prescient
+  :defer
+  :ensure t
+  :after company
+  :config
+  (company-prescient-mode 1))
+
+  (use-package company-irony
+  :defer
+  :ensure t
+  :after comapny)
+
+  (use-package company-shell
+  :defer
+  :ensure t
+  :after comany)
+
+  (use-package company-c-headers
+  :defer
+  :after company
+  :ensure t)
+
+  (use-package company-emoji
+  :defer
+  :ensure t
+  :after company
+  :config
+  (add-to-list 'company-backends 'company-emoji))
+#+END_SRC
+
+** golden ratio
+When working with many windows at the same time,
+each window has a size that is not convenient for editing.
+#+BEGIN_SRC emacs-lisp
+  (use-package golden-ratio
+  :ensure t
+  :config
+  (add-to-list 'golden-ratio-extra-commands 'ace-window)
+  (golden-ratio-mode 1))
+#+END_SRC
+
+** loccur
+loccur is Emacs minor mode for navigating through the file like occur does,
+but without opening a new window.
+#+BEGIN_SRC emacs-lisp
+   (use-package loccur
+   :ensure t)
+#+END_SRC
+
+** form feed
+#+BEGIN_SRC emacs-lisp
+  (use-package form-feed
+  :ensure t
+  :hook
+  (emacs-lisp-mode . form-feed-mode)
+  (compilation-mode . form-feed-mode)
+  (help-mode . form-feed-mode))
+#+END_SRC
+
+** multi-cursors
+#+BEGIN_SRC emacs-lisp
+  (defun gpolonkai/no-blink-matching-paren ()
+    (customize-set-variable 'blink-matching-paren nil))
+
+  (defun gpolonkai/blink-matching-paren ()
+    (customize-set-variable 'blink-matching-paren t))
+
+  (use-package multiple-cursors
+  :ensure t
+  :init
+    (defvar gpolonkai/mc-prefix-map (make-sparse-keymap)
+      "Prefix keymap for multiple-cursors")
+    (define-prefix-command 'gpolonkai/mc-prefix-map)
+    (define-key global-map (kbd "C-c m") 'gpolonkai/mc-prefix-map)
+  :hook
+    (multiple-cursors-mode-enabled . gpolonkai/no-blink-matching-paren)
+    (multiple-cursors-mode-disabled . gpolonkai/blink-matching-paren)
+  :bind
+    (:map gpolonkai/mc-prefix-map
+     ("t" . mc/mark-all-like-this)
+     ("m" . mc/mark-all-like-this-dwim)
+     ("l" . mc/edit-lines)
+     ("e" . mc/edit-ends-of-lines)
+     ("a" . mc/edit-beginnings-of-lines)
+     ("n" . mc/mark-next-like-this)
+     ("p" . mc/mark-previous-like-this)
+     ("s" . mc/mark-sgml-tag-pair)
+     ("d" . mc/mark-all-like-this-in-defun)
+     ("M-<mouse-1>" . mc/add-cursor-on-click)))
+#+END_SRC
+
+** editor config
+#+BEGIN_SRC emacs-lisp
+  (use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1)
+  (setq editorconfig-trim-whitespaces-mode
+        'ws-butler-mode))
+#+END_SRC

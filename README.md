@@ -1,7 +1,5 @@
 # Emacs configuration
 
-- without evil
-
 ## How to use it
 
 ```shell

@@ -1,0 +1,152 @@
+#+STARTUP: overview
+#+PROPERTY: header-args :comments yes :results silent
+
+* Config
+** uniquify
+#+BEGIN_SRC emacs-lisp
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'reverse)
+#+END_SRC
+
+** ispell
+#+BEGIN_SRC emacs-lisp
+  (setq ispell-program-name "aspell")
+  ;; You could add extra option "--camel-case" for camel case code spell checking if Aspell 0.60.8+ is installed
+  ;; @see https://github.com/redguardtoo/emacs.d/issues/796
+  (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together" "--camel-case" "--run-together-limit=16"))
+#+END_SRC
+
+** editor config
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-messsage t)
+  (global-set-key (kbd "<f5>") 'revert-buffer)
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (setq-default frame-title-format "%b (%f)")
+
+  ;; cursor
+  (setq-default cursor-type 'bar)
+  (set-cursor-color "#63D490")
+  (blink-cursor-mode 1)
+
+  (menu-bar-mode -1)
+  ;;(tool-bar-mode -1)
+  ;;(scroll-bar-mode -1)
+  (set-face-attribute 'region nil :background "#fffacd")
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+  (mouse-wheel-mode -1)
+  (global-set-key [wheel-up] 'ignore)
+  (global-set-key [double-wheel-up] 'ignore)
+  (global-set-key [triple-wheel-up] 'ignore)
+  (global-set-key [wheel-down] 'ignore)
+  (global-set-key [double-wheel-down] 'ignore)
+  (global-set-key [triple-wheel-down] 'ignore)
+  (global-set-key [wheel-left] 'ignore)
+  (global-set-key [double-wheel-left] 'ignore)
+  (global-set-key [triple-wheel-left] 'ignore)
+  (global-set-key [wheel-right] 'ignore)
+  (global-set-key [double-wheel-right] 'ignore)
+  (global-set-key [triple-wheel-right] 'ignore)
+  (global-set-key (kbd "C-x w")  'comment-region)
+
+  (require 'hl-line)
+  (add-hook 'prog-mode-hook #'hl-line-mode)
+  (add-hook 'text-mode-hook #'hl-line-mode)
+
+  (use-package bind-key)
+  (setq gc-cons-threshold 100000000)
+  (set-charset-priority 'unicode)
+  (prefer-coding-system 'utf-8-unix)
+  (delete-selection-mode t)
+  (column-number-mode)
+  (savehist-mode)
+
+  (set-language-environment "UTF-8")
+  (set-default-coding-systems 'utf-8)
+  (setq
+    ;; No need to see GNU agitprop.
+    inhibit-startup-screen t
+    ;; Double-spaces after periods is morally wrong.
+    sentence-end-double-space nil
+    ;; Never ding at me, ever.
+    ring-bell-function 'ignore
+    ;; Save existing clipboard text into the kill ring before replacing it.
+    save-interprogram-paste-before-kill t
+    ;; Prompts should go in the minibuffer, not in a GUI.
+    use-dialog-box nil
+    ;; Fix undo in commands affecting the mark.
+    mark-even-if-inactive nil
+    ;; Let C-k delete the whole line.
+    kill-whole-line t
+    ;; search should be case-sensitive by default
+    case-fold-search nil
+    ;; no need to prompt for the read command _every_ time
+    compilation-read-command nil
+    ;; scroll to first error
+    compilation-scroll-output 'first-error
+    ;; accept 'y' or 'n' instead of yes/no
+    ;; the documentation advises against setting this variable
+    ;; the documentation can get bent imo
+    use-short-answers t
+    ;; eke out a little more scrolling performance
+    fast-but-imprecise-scrolling nil
+    ;; prefer newer elisp files
+    load-prefer-newer t
+    ;; when I say to quit, I mean quit
+    confirm-kill-processes nil
+    ;; if native-comp is having trouble, there's not very much I can do
+    native-comp-async-report-warnings-errors 'silent
+    ;; unicode ellipses are better
+    truncate-string-ellipsis "…"
+    ;; I want to close these fast, so switch to it so I can just hit 'q'
+    help-window-select t
+    ;; this certainly can't hurt anything
+    delete-by-moving-to-trash t
+    ;; keep the point in the same place while scrolling
+    scroll-preserve-screen-position t
+    ;; more info in completions
+    completions-detailed t
+    ;; highlight error messages more aggressively
+    next-error-message-highlight t
+    ;; don't let the minibuffer muck up my window tiling
+    read-minibuffer-restore-windows t
+    ;; scope save prompts to individual projects
+    save-some-buffers-default-predicate 'save-some-buffers-root
+    ;; don't keep duplicate entries in kill ring
+    kill-do-not-save-duplicates t
+  )
+
+  ;; Never mix tabs and spaces. Never use tabs, period.
+  ;; We need the setq-default here because this becomes
+  ;; a buffer-local variable when set.
+  (setq-default indent-tabs-mode nil)
+#+END_SRC
+
+** backup config
+#+BEGIN_SRC emacs-lisp
+;; store all backup and autosave files in the tmp dir
+  (setq backup-directory-alist
+    `((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+    `((".*" ,temporary-file-directory t)))
+#+END_SRC
+
+** helpful
+#+BEGIN_SRC emacs-lisp
+
+  (use-package s
+  :ensure t)
+
+  (use-package dash
+  :ensure t)
+
+  (use-package shut-up
+  :ensure t)
+
+  ;; Displays available keybindings in popup, see more https://github.com/justbur/emacs-which-key
+  (use-package which-key
+  :ensure t
+  :config
+  (which-key-mode 1))
+
+#+END_SRC
