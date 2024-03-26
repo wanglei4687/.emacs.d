@@ -17,7 +17,7 @@
 
   (use-package  rjsx-mode
     :defer
-    :afeter typescript-mode
+    :after typescript-mode
     :ensure t)
 
 
