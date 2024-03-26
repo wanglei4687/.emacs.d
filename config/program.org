@@ -56,6 +56,7 @@
   (use-package cargo
   :defer
   :ensure t
+  :after rust-mode
   :hook (rust-mode . cargo-minor-mode)
   :diminish cargo-minor-mode
   :bind (
@@ -69,6 +70,7 @@
 
   (use-package flycheck-rust
   :defer
+  :after rust-mode
   :ensure t
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
@@ -86,10 +88,10 @@
 ** toml
 #+BEGIN_SRC emacs-lisp
   (use-package toml-mode
-  :defer
-  :ensure t
-  :config
-  (add-hook 'toml-mode-hook (lambda() (setq tab-width 2))))
+    :defer
+    :ensure t
+    :config
+    (add-hook 'toml-mode-hook (lambda() (setq tab-width 2))))
 #+END_SRC
 
 ** markdown
