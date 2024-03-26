@@ -6,9 +6,7 @@
 see more https://github.com/hlissner/emacs-doom-themes
 doom emacs: https://github.com/doomemacs/themes
 #+BEGIN_SRC emacs-lisp
-
   (use-package color-theme-modern
-
   :ensure t)
 
   (use-package doom-themes
