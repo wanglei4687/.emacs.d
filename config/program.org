@@ -12,7 +12,6 @@
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-enable nil)
 
-
   (use-package lsp-mode
   :ensure t
   :commands lsp
@@ -130,7 +129,9 @@
   :mode (("\\.yml\\'" . yaml-mode)
            ("\\.yaml\\'" . yaml-mode))
   :init
-    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+  :config
+  (add 'yaml-mode-hook (lambda() (setq tab-width 2))))
 #+END_SRC
 
 ** json
@@ -167,4 +168,9 @@ see more, https://github.com/Sarcasm/irony-mode
   :defer
   :after (irony flycheck)
   :ensure t)
+#+END_SRC
+** dap
+#+BEGIN_SRC emacs-lisp
+  (use-package dap-mode
+    :ensure t)
 #+END_SRC

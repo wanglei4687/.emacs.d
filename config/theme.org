@@ -15,6 +15,7 @@ doom emacs: https://github.com/doomemacs/themes
   (load-theme 'doom-dracula  t)
   ;;(load-theme 'doom-ayu-light t)
   ;;(load-theme 'doom-acario-light t)
+  ;;(load-theme 'doom-monokai-pro t)
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
   (setq doom-themes-treemacs-theme "doom-colors"))

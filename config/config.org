@@ -34,7 +34,7 @@
   (set-face-attribute 'region nil :background "#fffacd")
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-  (mouse-wheel-mode -1)
+  (mouse-wheel-mode 1)
   (global-set-key [wheel-up] 'ignore)
   (global-set-key [double-wheel-up] 'ignore)
   (global-set-key [triple-wheel-up] 'ignore)
@@ -52,6 +52,7 @@
   (require 'hl-line)
   (add-hook 'prog-mode-hook #'hl-line-mode)
   (add-hook 'text-mode-hook #'hl-line-mode)
+  (set-face-background 'hl-line "#4a5d4b")
 
   (use-package bind-key)
   (setq gc-cons-threshold 100000000)
