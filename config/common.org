@@ -281,8 +281,8 @@ See more, https://www.flycheck.org/en/latest/
   :underline nil)
 
   (set-face-attribute 'flycheck-error nil
-  :background "dc322f"
-  :foreground "#262626"
+  :background "#dc322f"
+  :foreground "#cadcb6"
   :underline nil)
 
   (global-flycheck-mode t))
