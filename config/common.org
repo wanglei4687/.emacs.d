@@ -277,12 +277,12 @@ See more, https://www.flycheck.org/en/latest/
 
   (set-face-attribute 'flycheck-warning nil
   :background "#b58900"
-  :foreground "#262626"
+  :foreground "#4a5d4b"
   :underline nil)
 
   (set-face-attribute 'flycheck-error nil
   :background "#dc322f"
-  :foreground "#cadcb6"
+  :foreground "#4a5d4b"
   :underline nil)
 
   (global-flycheck-mode t))
@@ -389,7 +389,8 @@ see more, http://www-sop.inria.fr/members/Manuel.Serrano/flyspell/flyspell.html
 
 ** fly-make
 #+BEGIN_SRC emacs-lisp
-  (use-package flymake :ensure nil
+  (use-package flymake
+  :ensure nil
   :init
   (setq-default flymake-no-changes-timeout 1)
   :config
@@ -397,4 +398,12 @@ see more, http://www-sop.inria.fr/members/Manuel.Serrano/flyspell/flyspell.html
         ;; the default mode line lighter takes up an unnecessary amount of
         ;; space, so make it shorter
         '(" " flymake-mode-line-exception flymake-mode-line-counters)))
+#+END_SRC
+
+** RGB Color
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+  :ensure t
+  :bind
+  (("C-c p" . rainbow-mode)))
 #+END_SRC
