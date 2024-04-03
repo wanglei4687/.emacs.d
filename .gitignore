@@ -20,6 +20,7 @@ var/
 eln-cache/
 org-persist/
 config/*.el
+.dap-breakpoints
 
 # OSX leaves these everywhere on SMB shares
 ._*

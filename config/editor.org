@@ -172,12 +172,6 @@ see more, https://magit.vc/
   )
 #+END_SRC
 
-** miniedit
-#+BEGIN_SRC emacs-lisp
-  (use-package miniedit
-  :ensure t)
-#+END_SRC
-
 ** company
 see more, http://company-mode.github.io/
 #+BEGIN_SRC emacs-lisp

@@ -16,6 +16,10 @@
   :ensure t
   :commands lsp
   :diminish lsp-mode
+  :hook
+  ((web-mode . lsp-deferred)
+   (typescript-mode . lsp-deferred)
+   (lsp-mode . lsp-enable-which-key-integration))
   :bind
   ("M-." . 'lsp-find-definition)
   ("M-t" . 'lsp-find-type-definition)
@@ -131,7 +135,7 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
   :config
-  (add 'yaml-mode-hook (lambda() (setq tab-width 2))))
+  (add-hook 'yaml-mode-hook (lambda() (setq tab-width 2))))
 #+END_SRC
 
 ** json

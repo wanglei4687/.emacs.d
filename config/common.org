@@ -57,26 +57,6 @@
   :bind (("C-c l" . nlinum-mode)))
 #+END_SRC
 
-** vertico
-see more, https://github.com/minad/vertico
-#+BEGIN_SRC emacs-lisp
-  (use-package vertico
-  :ensure t
-  :config
-  (vertico-mode)
-  (vertico-mouse-mode)
-  :custom
-  (vertico-count 22)
-  (vertico-cycle t)
-  :bind (:map vertico-map
-              ("C-v e" . #'vertico-quick-exit)
-              ("C-v c" . #'vertico-quick-insert)
-              ("C-v w" . #'exit-minibuffer)
-              ("C-v i" . #'vertico-insert)
-              ("C-v v" . #'vertico)
-              ("C-v d" . #'vertico-directory-delete-char)))
-#+END_SRC
-
 ** treemacs
 see more, https://github.com/Alexander-Miller/treemacs
 #+BEGIN_SRC emacs-lisp
@@ -204,9 +184,37 @@ see more,https://github.com/jojojames/dired-sidebar
 #+END_SRC
 
 ** prescient
+simple but effective sorting and filtering for Emacs
+https://github.com/radian-software/prescient.el
 #+BEGIN_SRC emacs-lisp
   (use-package prescient
-  :ensure t)
+    :ensure t)
+
+#+END_SRC
+
+** vertico
+see more, https://github.com/minad/vertico
+#+BEGIN_SRC emacs-lisp
+  (use-package vertico
+  :after prescient
+  :ensure t
+  :config
+  (vertico-mode)
+  (vertico-mouse-mode)
+  :custom
+  (vertico-count 22)
+  (vertico-cycle t)
+  :bind (:map vertico-map
+              ("C-v e" . #'vertico-quick-exit)
+              ("C-v c" . #'vertico-quick-insert)
+              ("C-v w" . #'exit-minibuffer)
+              ("C-v i" . #'vertico-insert)
+              ("C-v v" . #'vertico)
+              ("C-v d" . #'vertico-directory-delete-char)))
+
+  (use-package vertico-prescient
+    :after vertico
+    :ensure t)
 #+END_SRC
 
 ** ace 
@@ -234,6 +242,7 @@ see more,https://github.com/jojojames/dired-sidebar
 ** ivy
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
+  :after prescient
   :ensure t
   :diminish (ivy-mode)
   :bind (("C-x b" . ivy-switch-buffer))
@@ -242,6 +251,10 @@ see more,https://github.com/jojojames/dired-sidebar
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "%d/%d ")
   (setq ivy-display-style 'fancy))
+
+  (use-package ivy-prescient
+    :after ivy
+    :ensure t)
 
   (use-package swiper
   :ensure t
@@ -387,7 +400,7 @@ see more, http://www-sop.inria.fr/members/Manuel.Serrano/flyspell/flyspell.html
   :config (dashboard-setup-startup-hook))
 #+END_SRC
 
-** fly-make
+** flymake
 #+BEGIN_SRC emacs-lisp
   (use-package flymake
   :ensure nil

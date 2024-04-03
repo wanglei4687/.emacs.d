@@ -152,3 +152,7 @@
 
 #+END_SRC
 
+** cursor
+#+BEGIN_SRC emacs-lisp
+  (setq default-frame-alist '((cursor-color . "#dfd6ab")))
+#+END_SRC

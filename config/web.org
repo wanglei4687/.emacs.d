@@ -2,16 +2,38 @@
 #+PROPERTY: header-args :comments yes :results silent
 
 * web-dev
-** typescript
+** web
 #+BEGIN_SRC emacs-lisp
-  (use-package typescript-mode
-    :defer
+  (use-package tide
+    :ensure t
+    :after (company flycheck)
+    :config (setq tide-format-options '(:table-size 2 :indent-size 2))
+    :hook ((typescript-mode . tide-setup)
+           (tsx-ts-mode . tide-setup)
+           (typescript-ts-mode . tide-hl-identifier-mode)
+           (before-save . tide-format-before-save)))
+
+  (use-package web-mode
+    :ensure t
+    :mode (("\\.js\\'" . web-mode)
+           ("\\.jsx\\'" . web-mode)
+           ("\\.html\\'" . web-mode))
+    :config
+    ((setq web-mode-markup-indent-offset 2)
+     (setq web-mode-code-indent-offset 2)
+     (setq web-mode-css-indent-offset 2))
+    :commands web-mdoe)
+
+  (use-package prettier-js
     :ensure t
     :config
-    ;; use our derived mode for tsx files
-    (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
-    (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
-    (add-hook 'typescript-mode-hook '(lambda() (setq tab-width 2))))
+    (add-hook 'web-mode-hook #'(lambda ()
+                                 (enable-minor-mode
+                                  '("\\.jsx?;" . prettier-js-mode))
+                                 (enable-minor-mode
+                                  '("\\.tx?;" . prettier-js-mode))
+                                 (enable-minor-mode
+                                  '("\\.tsx?\\;" . prettier-js-mode)))))
 
   (use-package  rjsx-mode
     :after typescript-mode
