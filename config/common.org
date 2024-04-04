@@ -63,7 +63,7 @@ see more, https://github.com/Alexander-Miller/treemacs
   (use-package treemacs
   :ensure t
   :config
-  (setq treemacs-width 20)
+  (setq treemacs-width 25)
   :bind (
   ("C-c C-x t" . treemacs)
   ("C-c C-x e" . treemacs-edit-workspaces)
